@@ -1,0 +1,309 @@
+{
+  "tipos_leite": [
+    {
+      "id": 1,
+      "descricao": "Leite integral"
+    },
+    {
+      "id": 2,
+      "descricao": "Leite desnatado"
+    },
+    {
+      "id": 3,
+      "descricao": "Leite vegetal (aveia)"
+    },
+    {
+      "id": 4,
+      "descricao": "Sem leite"
+    }
+  ],
+  "tamanhos": [
+    {
+      "id": 1,
+      "descricao": "Pequeno (180ml)"
+    },
+    {
+      "id": 2,
+      "descricao": "Médio (300ml)"
+    },
+    {
+      "id": 3,
+      "descricao": "Grande (450ml)"
+    }
+  ],
+  "status_pedido": [
+    {
+      "id": 1,
+      "descricao": "Pedido recebido"
+    },
+    {
+      "id": 2,
+      "descricao": "Em preparo"
+    },
+    {
+      "id": 3,
+      "descricao": "Pronto para retirada"
+    },
+    {
+      "id": 4,
+      "descricao": "Entregue"
+    },
+    {
+      "id": 5,
+      "descricao": "Pagamento pendente"
+    },
+    {
+      "id": 6,
+      "descricao": "Pedido confirmado"
+    }
+  ],
+  "pedidos": [
+    {
+      "nome": "Yan",
+      "tipoLeite": {
+        "id": 4,
+        "descricao": "Sem leite"
+      },
+      "tamanho": {
+        "id": 1,
+        "descricao": "Pequeno (180ml)"
+      },
+      "acompanhamentos": [
+        {
+          "id": 1,
+          "nome": "Cookie de chocolate",
+          "descricao": "Cookie artesanal com gotas de chocolate meio amargo",
+          "foto": "/img/cafe_4.svg",
+          "valor": 8,
+          "eh_novidade": false
+        }
+      ],
+      "adicionais": [
+        {
+          "id": 1,
+          "nome": "Dose extra de espresso",
+          "descricao": "",
+          "foto": "/img/cafe_1.svg",
+          "valor": 4,
+          "eh_novidade": false
+        }
+      ],
+      "cafe": {
+        "id": 1,
+        "nome": "Espresso",
+        "foto": "/img/cafe_1.svg",
+        "descricao": "Café espresso extraído na hora, encorpado e intenso, com aquela crema dourada por cima. Para quem aprecia o sabor puro do grão.",
+        "valor": 7,
+        "eh_novidade": false
+      },
+      "statusId": "2",
+      "id": 1
+    },
+    {
+      "nome": "Luis",
+      "tipoLeite": {
+        "id": 1,
+        "descricao": "Leite integral"
+      },
+      "tamanho": {
+        "id": 2,
+        "descricao": "Médio (300ml)"
+      },
+      "acompanhamentos": [
+        {
+          "id": 2,
+          "nome": "Muffin de blueberry",
+          "descricao": "Muffin fofinho recheado com blueberries",
+          "foto": "/img/cafe_5.svg",
+          "valor": 9,
+          "eh_novidade": true
+        }
+      ],
+      "adicionais": [
+        {
+          "id": 3,
+          "nome": "Calda de caramelo",
+          "descricao": "",
+          "foto": "/img/cafe_3.svg",
+          "valor": 3,
+          "eh_novidade": false
+        }
+      ],
+      "cafe": {
+        "id": 6,
+        "nome": "Macchiato",
+        "foto": "/img/cafe_6.svg",
+        "descricao": "Espresso marcado com apenas um toque de espuma de leite. Mais forte que o cappuccino, ideal para quem quer intensidade com leveza.",
+        "valor": 10,
+        "eh_novidade": false
+      },
+      "statusId": 1,
+      "id": 2
+    },
+    {
+      "nome": "Yan",
+      "tipoLeite": {
+        "id": 4,
+        "descricao": "Sem leite"
+      },
+      "tamanho": {
+        "id": 1,
+        "descricao": "Pequeno (180ml)"
+      },
+      "acompanhamentos": [
+        {
+          "id": 1,
+          "nome": "Cookie de chocolate",
+          "descricao": "Cookie artesanal com gotas de chocolate meio amargo",
+          "foto": "/img/cafe_4.svg",
+          "valor": 8,
+          "eh_novidade": false
+        }
+      ],
+      "adicionais": [
+        {
+          "id": 2,
+          "nome": "Chantilly",
+          "descricao": "",
+          "foto": "/img/cafe_3.svg",
+          "valor": 3,
+          "eh_novidade": false
+        }
+      ],
+      "cafe": {
+        "id": 1,
+        "nome": "Espresso",
+        "foto": "/img/cafe_1.svg",
+        "descricao": "Café espresso extraído na hora, encorpado e intenso, com aquela crema dourada por cima. Para quem aprecia o sabor puro do grão.",
+        "valor": 7,
+        "eh_novidade": false
+      },
+      "statusId": 1,
+      "id": 3
+    }
+  ],
+  "opcionais": {
+    "acompanhamentos": [
+      {
+        "id": 1,
+        "nome": "Cookie de chocolate",
+        "descricao": "Cookie artesanal com gotas de chocolate meio amargo",
+        "foto": "/img/cafe_4.svg",
+        "valor": 8,
+        "eh_novidade": false
+      },
+      {
+        "id": 2,
+        "nome": "Muffin de blueberry",
+        "descricao": "Muffin fofinho recheado com blueberries",
+        "foto": "/img/cafe_5.svg",
+        "valor": 9,
+        "eh_novidade": true
+      },
+      {
+        "id": 3,
+        "nome": "Pão de queijo",
+        "descricao": "Pão de queijo mineiro quentinho",
+        "foto": "/img/cafe_6.svg",
+        "valor": 6,
+        "eh_novidade": false
+      }
+    ],
+    "adicionais": [
+      {
+        "id": 1,
+        "nome": "Dose extra de espresso",
+        "descricao": "",
+        "foto": "/img/cafe_1.svg",
+        "valor": 4,
+        "eh_novidade": false
+      },
+      {
+        "id": 2,
+        "nome": "Chantilly",
+        "descricao": "",
+        "foto": "/img/cafe_3.svg",
+        "valor": 3,
+        "eh_novidade": false
+      },
+      {
+        "id": 3,
+        "nome": "Calda de caramelo",
+        "descricao": "",
+        "foto": "/img/cafe_3.svg",
+        "valor": 3,
+        "eh_novidade": false
+      },
+      {
+        "id": 4,
+        "nome": "Calda de chocolate",
+        "descricao": "",
+        "foto": "/img/cafe_4.svg",
+        "valor": 3,
+        "eh_novidade": true
+      }
+    ]
+  },
+  "menu": {
+    "especiais": [
+      {
+        "id": 1,
+        "nome": "Affogato",
+        "foto": "/img/especial_1.svg",
+        "descricao": "Uma dose de espresso quente despejada sobre sorvete de creme. O contraste perfeito entre o amargor do café e a doçura gelada do sorvete.",
+        "valor": 18,
+        "eh_novidade": true
+      }
+    ],
+    "cafes": [
+      {
+        "id": 1,
+        "nome": "Espresso",
+        "foto": "/img/cafe_1.svg",
+        "descricao": "Café espresso extraído na hora, encorpado e intenso, com aquela crema dourada por cima. Para quem aprecia o sabor puro do grão.",
+        "valor": 7,
+        "eh_novidade": false
+      },
+      {
+        "id": 2,
+        "nome": "Cappuccino",
+        "foto": "/img/cafe_2.svg",
+        "descricao": "Espresso, leite vaporizado e uma generosa camada de espuma cremosa, finalizado com um toque de canela. Clássico e reconfortante.",
+        "valor": 12,
+        "eh_novidade": true
+      },
+      {
+        "id": 3,
+        "nome": "Latte",
+        "foto": "/img/cafe_3.svg",
+        "descricao": "Espresso suave com bastante leite vaporizado e uma leve camada de espuma. Cremoso, equilibrado e perfeito para a tarde.",
+        "valor": 13,
+        "eh_novidade": true
+      },
+      {
+        "id": 4,
+        "nome": "Mocha",
+        "foto": "/img/cafe_4.svg",
+        "descricao": "Espresso combinado com chocolate e leite vaporizado, finalizado com chantilly. A escolha ideal para os amantes de chocolate.",
+        "valor": 15,
+        "eh_novidade": true
+      },
+      {
+        "id": 5,
+        "nome": "Café Coado",
+        "foto": "/img/cafe_5.svg",
+        "descricao": "Café coado na hora pelo método V60, realçando notas frutadas e uma bebida limpa e aromática. Servido na xícara ou na garrafa.",
+        "valor": 8,
+        "eh_novidade": false
+      },
+      {
+        "id": 6,
+        "nome": "Macchiato",
+        "foto": "/img/cafe_6.svg",
+        "descricao": "Espresso marcado com apenas um toque de espuma de leite. Mais forte que o cappuccino, ideal para quem quer intensidade com leveza.",
+        "valor": 10,
+        "eh_novidade": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#f3e9df"/>
+  <g transform="translate(200,140)">
+    <ellipse cx="0" cy="78" rx="70" ry="12" fill="rgba(0,0,0,.15)"/>
+    <path d="M-55,-35 L55,-35 L48,55 Q45,70 30,70 L-30,70 Q-45,70 -48,55 Z" fill="#fff"/>
+    <path d="M-55,-35 L55,-35 L52,-18 L-52,-18 Z" fill="#b07d4f"/>
+    <path d="M-44,-10 Q0,12 44,-10 L40,40 Q38,52 26,52 L-26,52 Q-38,52 -40,40 Z" fill="#3e2723"/>
+    <path d="M55,-25 Q92,-22 90,12 Q88,40 55,40 L55,28 Q76,28 77,8 Q78,-10 55,-12 Z" fill="#fff"/>
+    <path d="M-22,-58 q-10,-14 4,-26 M2,-58 q-10,-14 4,-26 M26,-58 q-10,-14 4,-26"
+          stroke="#b07d4f" stroke-width="5" fill="none" stroke-linecap="round" opacity=".8"/>
+  </g>
+  <text x="200" y="245" text-anchor="middle" font-family="Georgia, serif" font-size="28" font-weight="bold" fill="#3e2723">Cappuccino</text>
+  <text x="200" y="272" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="#b07d4f">cremoso</text>
+</svg>
