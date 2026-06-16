@@ -1,5 +1,6 @@
 <template>
   <div id="main-banner">
+    <img id="banner-img" src="/img/banner.svg" alt="banner" />
     <h1>Seu café do jeitinho que você gosta</h1>
   </div>
 </template>
@@ -10,13 +11,21 @@ export default {
 </script>
 <style scoped>
 #main-banner {
-  background-image: url("C:\Users\Lucas\Downloads\aroma-cafe\aroma-cafe\public\img\banner.svg");
+  position: relative;
   height: 300px;
-  background-position: 0;
-  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  overflow: hidden;
+}
+#banner-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 #main-banner h1 {
   font-size: 40px;
