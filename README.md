@@ -140,14 +140,14 @@ local (re-renderização imediata) seguido do alerta verde de sucesso.
 
 URL pública da API mockada (JSON Server, publicada no Render):
 
-**‹https://banco-json-aroma-cafe.onrender.com›** 
+**https://banco-json-aroma-cafe.onrender.com** 
 ---
 
 ## 4. Link de Produção
 
 Link ativo do projeto publicado (Vercel):
 
-**‹https://aroma-cafe-764hgx83u-yan-neris-projects.vercel.app›**
+**https://aroma-cafe-764hgx83u-yan-neris-projects.vercel.app**
 
 ---
 
