@@ -1,35 +1,37 @@
 # ☕ Aroma Café
 
-Sistema de pedidos de uma **cafeteria**, desenvolvido em **Vue 3**.
-Este projeto é a evolução e customização do sistema base **T-Burguer** (trabalhado em
-sala de aula), reaproveitando toda a sua estrutura — Options API, `vue-router`,
-`fetch`, propriedade global `$apiUrl` e JSON Server — adaptada para um novo segmento
-comercial.
+Sistema de pedidos de uma **cafeteria**, desenvolvido em **Vue 3**, evoluído e
+customizado a partir do sistema base **T-Burguer** (trabalhado em sala de aula).
+A estrutura original foi integralmente reaproveitada — Options API, `vue-router`,
+`fetch`, propriedade global `$apiUrl` e JSON Server — e adaptada para um novo
+segmento comercial.
 
 ---
 
-## 📌 Visão Geral
+## 1. Visão Geral
 
-O segmento escolhido foi uma **cafeteria**. O sistema permite que o cliente navegue
-por um cardápio de cafés, monte seu pedido (escolhendo tipo de leite, tamanho,
-acompanhamentos e adicionais) e acompanhe a lista de pedidos realizados, com troca de
-status e exclusão.
+O segmento escolhido foi uma **cafeteria**. O cliente navega por um cardápio de cafés,
+monta seu pedido (escolhendo **tipo de leite**, **tamanho**, **acompanhamentos** e
+**adicionais**) e acompanha a lista de pedidos realizados, podendo alterar o status e
+excluir registros.
 
-### Principais alterações em relação ao T-Burguer
+### Alterações estruturais (dados e regras)
+
+O campo *"Ponto da carne"* do T-Burguer deixou de fazer sentido para uma cafeteria e
+foi substituído por *"Tipo de leite"*. Além disso, foi criado o campo obrigatório
+*"Tamanho"*. O objeto principal `burguer` virou `cafe`, e os opcionais foram
+remodelados:
 
 | T-Burguer (original) | Aroma Café (novo) |
 |---|---|
-| Item principal `burguer` | `cafe` |
+| `burguer` (item principal) | `cafe` |
 | `tipos_pontos` / *"Ponto da carne"* | `tipos_leite` / *"Tipo de leite"* |
 | *(não existia)* | `tamanhos` / *"Tamanho"* (campo novo) |
-| `opcionais.complemento` | `opcionais.acompanhamentos` (cookie, muffin, pão de queijo) |
-| `opcionais.bebidas` | `opcionais.adicionais` (chantilly, calda, dose extra) |
+| `opcionais.complemento` | `opcionais.acompanhamentos` |
+| `opcionais.bebidas` | `opcionais.adicionais` |
 | `menu.burgues` | `menu.cafes` |
-| Paleta dourado/preto (`darkgoldenrod`, `#333`) | Paleta café/caramelo (`#3e2723`, `#b07d4f`) |
 
-**Alterações estruturais (dados e regras):** o campo *"Ponto da carne"* deixou de fazer
-sentido e foi substituído por *"Tipo de leite"*. Foi acrescentado o campo obrigatório
-*"Tamanho"*. O objeto enviado para a API ao confirmar um pedido foi remodelado:
+Reflexo dessas mudanças no objeto enviado para a API ao confirmar um pedido:
 
 ```js
 // PedidoComponent.vue
@@ -44,28 +46,22 @@ const dadosPedido = {
 };
 ```
 
-**Alterações visuais:** novo nome, logo e banner, troca completa de imagens (cafés),
-textos e paleta de cores. Exemplo da troca de identidade na barra de navegação:
+### Alterações visuais
 
-```html
-<!-- NavBarComponent.vue -->
-<img src="/img/logo_aroma.svg" id="logo" />
-```
+Novo nome, logo, banner, troca completa das imagens (cafés), textos e paleta de cores
+(de dourado/preto para café/caramelo). Exemplo na barra de navegação:
 
 ```css
+/* NavBarComponent.vue */
 #nav {
-  background-color: #3e2723;     /* café espresso */
+  background-color: #3e2723;        /* café espresso */
   border-bottom: #b07d4f 4px solid; /* caramelo */
 }
 ```
 
-> **Imagens:** os arquivos em `public/img/*.svg` são *placeholders* gerados para o
-> projeto rodar sem imagens quebradas. Substitua-os pelas suas próprias fotos de café
-> mantendo os mesmos nomes (ou atualize os caminhos no `db/db.json`).
-
 ---
 
-## 🚦 Solução Técnica dos Alertas
+## 2. Solução Técnica dos Alertas
 
 A comunicação visual foi centralizada em um único componente reutilizável,
 `AlertaComponent.vue`, que recebe três `props`: `tipo`, `mensagem` e `visivel`.
@@ -78,13 +74,14 @@ O `tipo` define a cor semântica e o ícone exibido:
 | `info` | 🔵 Azul | Informações contextuais |
 | `sucesso` | 🟢 Verde | Sucesso ao cadastrar, editar ou excluir |
 
-O ícone é resolvido por uma `computed` a partir do `tipo`, e a cor é aplicada via
-*class binding* dinâmico (`alerta-${tipo}`):
+A **exibição dinâmica** funciona assim: a cor é aplicada por *class binding*
+(`alerta-${tipo}`) e o ícone é retornado por um método (`obterIcone`) a partir do
+`tipo`:
 
 ```js
 // AlertaComponent.vue
-computed: {
-  icone() {
+methods: {
+  obterIcone() {
     const icones = { erro: "✕", aviso: "⚠", info: "ℹ", sucesso: "✓" };
     return icones[this.tipo] || "ℹ";
   },
@@ -93,13 +90,13 @@ computed: {
 
 ```html
 <div v-if="visivel" :class="['alerta', `alerta-${tipo}`]" role="alert">
-  <span class="alerta-icone">{{ icone }}</span>
+  <span class="alerta-icone">{{ obterIcone() }}</span>
   <span class="alerta-mensagem">{{ mensagem }}</span>
 </div>
 ```
 
-Cada tela que usa alertas mantém um objeto reativo `alerta` em `data()` e um método
-único `mostrarAlerta(tipo, mensagem)` que o atualiza:
+Cada tela mantém um objeto reativo `alerta` em `data()` e um método único
+`mostrarAlerta(tipo, mensagem)` que dispara o alerta certo:
 
 ```js
 data() {
@@ -112,10 +109,8 @@ methods: {
 }
 ```
 
-### Validação de campos obrigatórios
-
-Antes de enviar o pedido, `validarPedido()` bloqueia a confirmação caso falte algum
-campo essencial, disparando o alerta apropriado:
+A **lógica de validação** roda antes de enviar o pedido: `validarPedido()` bloqueia a
+confirmação quando falta um campo obrigatório e dispara o alerta vermelho de erro:
 
 ```js
 validarPedido() {
@@ -135,57 +130,44 @@ validarPedido() {
 }
 ```
 
-### Experiência do Usuário (UX)
+Em caso de sucesso, é exibido o alerta verde e o usuário é redirecionado
+automaticamente para a tela de pedidos. Na exclusão, o registro é removido do array
+local (re-renderização imediata) seguido do alerta verde de sucesso.
 
-- **Redirecionamento inteligente:** ao confirmar o pedido com sucesso, é exibido o
-  alerta verde e, em seguida, o usuário é levado automaticamente para a lista de
-  pedidos:
+---
 
-  ```js
-  this.mostrarAlerta("sucesso", "Pedido confirmado com sucesso!");
-  setTimeout(() => { this.$router.push("/pedidos"); }, 1200);
-  ```
+## 3. Link da API
 
-- **Estado em tempo real:** a tela de pedidos consulta a API ao ser montada
-  (`mounted`), exibindo imediatamente o novo registro.
+URL pública da API mockada (JSON Server, publicada no Render):
 
-- **Feedback de remoção:** ao excluir, o item é removido do array local com `filter`,
-  forçando a re-renderização imediata sem novo *fetch*, seguido do alerta verde:
+**‹https://banco-json-aroma-cafe.onrender.com›** 
+---
 
-  ```js
-  this.listaPedidosRealizados = this.listaPedidosRealizados.filter(
-    (pedido) => pedido.id !== id
-  );
-  this.mostrarAlerta("sucesso", "Pedido excluído com sucesso!");
-  ```
+## 4. Link de Produção
+
+Link ativo do projeto publicado (Vercel):
+
+**‹https://aroma-cafe-764hgx83u-yan-neris-projects.vercel.app›**
+
+---
+
+## 5. Link do Repositório
+
+Código-fonte público no GitHub:
+
+- **Front-end:** https://github.com/Yan-neri/aroma-cafe
+- **Banco-json (API):** https://github.com/Yan-neri/banco-json
 
 ---
 
 ## ⚙️ Como rodar localmente
 
 ```bash
-# 1. Instalar dependências
-npm install
-
-# 2. Iniciar o banco (JSON Server) na porta 3000
-npm run bancojson
-
-# 3. Em outro terminal, rodar a aplicação
-npm run serve
+npm install          # instala as dependências
+npm run bancojson    # inicia o JSON Server na porta 3000
+npm run serve        # em outro terminal, roda a aplicação
 ```
 
-> Crie um arquivo `.env.development` (copie de `.env.exemplo`) com:
-> `VUE_APP_API_BASE_URL=http://localhost:3000`
-
----
-
-## 🔗 Links da Entrega
-
-- **API (JSON Server):** ‹INSIRA AQUI A URL PÚBLICA DA SUA API›
-- **Produção (site publicado):** ‹INSIRA AQUI O LINK DO GITHUB PAGES›
-- **Repositório do código-fonte:** ‹INSIRA AQUI O LINK DO REPOSITÓRIO›
-
-> **Deploy no GitHub Pages:** no `vue.config.js`, ajuste o `publicPath` para
-> `'/<NOME-DO-REPO>/'` em produção (ex: `'/aroma-cafe/'`) antes de gerar o build com
-> `npm run build`. Em produção, defina `VUE_APP_API_BASE_URL` em `.env.production`
-> apontando para a URL pública do seu JSON Server.
+> Crie um `.env.development` (copie de `.env.exemplo`) com
+> `VUE_APP_API_BASE_URL=http://localhost:3000`. O Vue só lê o `.env` ao iniciar;
+> após editar, reinicie o `npm run serve`.
