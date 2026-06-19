@@ -1,6 +1,7 @@
 <template>
   <div>
     <AlertaComponent
+      ref="alertaRef"
       :tipo="alerta.tipo"
       :mensagem="alerta.mensagem"
       :visivel="alerta.visivel"
@@ -94,8 +95,14 @@ export default {
   },
   methods: {
     mostrarAlerta(tipo, mensagem) {
-      this.alerta = { visivel: true, tipo, mensagem };
-    },
+  this.alerta = { visivel: true, tipo, mensagem };
+  this.$nextTick(() => {
+    const el = this.$refs.alertaRef.$el;
+    if (el && el.scrollIntoView) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  });
+},
     async consultarPedidos() {
       const response = await fetch(`${this.$apiUrl}/pedidos`);
       const dados = await response.json();
