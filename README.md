@@ -147,7 +147,7 @@ URL pública da API mockada (JSON Server, publicada no Render):
 
 Link ativo do projeto publicado (Vercel):
 
-**https://aroma-cafe-764hgx83u-yan-neris-projects.vercel.app**
+**https://aroma-cafe-sooty.vercel.app?_vercel_share=1160sF1NtloWZJeeSs5lOnR2fN9r9r98**
 
 ---
 
